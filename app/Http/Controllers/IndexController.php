@@ -18,4 +18,8 @@ class IndexController extends Controller
                                     'articles'=>$articles]);
         
     }
+
+    public function page1(){
+    	return view('page1');
+    }
 }
