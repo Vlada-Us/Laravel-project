@@ -3,29 +3,59 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Jumbotron Template · Bootstrap</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <title>Gracios Dwelling</title>
+  <script src="{{ asset('js/app.js') }}" defer></script>
   <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <link href="{{asset('css/jumbotron.css')}}" rel="stylesheet">
+  <link rel="stylesheet" href="{{asset('https://www.w3schools.com/w3css/4/w3.css')}}">
+  <link rel="icon" href="/img/logo.png">
 
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #ffe6ff;">
     <div class="container">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="/">Project name</a>
+      <div class="navbar-header" style="width:100px; height:110px;">
+        <a class="navbar-brand" href="/"><img src="/img/logo.png" alt="Hermes" style="width:44px; margin-top:36px;"></a>
       </div>
       <div class="links">
-        <a href="/page/add">Add</a>
-        <a href="admin">Admin</a>
-        <a href="https://laravel-news.com">News</a>
-        <a href="https://blog.laravel.com">Blog</a>
-        <a href="https://nova.laravel.com">Nova</a>
-        <a href="https://forge.laravel.com">Forge</a>
-        <a href="https://vapor.laravel.com">Vapor</a>
-        <a href="https://github.com/laravel/laravel">GitHub</a>
+        <a href="/">Home</a>
+        <a href="page1">Catalog</a>
+        <a href="contacts">Contacts</a>
       </div>
+      <ul class="navbar-nav ml-auto">
+        <!-- Authentication Links -->
+        @guest
+        <li class="nav-item">
+          <a style="color:black;" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+        </li>
+        @if (Route::has('register'))
+        <li class="nav-item">
+          <a style="color:black;" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+        </li>
+        @endif
+        @else
+        <li class="nav-item dropdown">
+          <a style="color:black;" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+            {{ Auth::user()->name }} <span class="caret"></span>
+          </a>
+
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="articles">Crud</a>
+            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+              {{ __('Logout') }}
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+            </form>
+          </div>
+        </li>
+        @endguest
+      </ul>
     </div>
   </nav>
 
@@ -37,10 +67,12 @@
       @endforeach
     </ul>
     @endif
+
     @yield('content')
-    <footer class="container">
-      <p>&copy; 2020 Company, Inc.</p>
-    </footer>
+<br><br><br><br><br>
+    <div class="container, copyright">
+      &copy 2020 Creat de catre: Usatii Vlada
+    </div>
 </body>
 
 </html>

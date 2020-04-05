@@ -7,27 +7,49 @@
   <!-- Main jumbotron for a primary marketing message or call to action -->
   <div class="jumbotron">
     <div class="container">
-      <h1 class="display-3">{{$hw}}</h1>
-      <p>{{$ms}}</p>
-      <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+    </div>
+  </div>
+  <!-- Example row of columns -->
+  <div>
+    <h1 style="text-align: center;padding-top: 1.5em">GRACIOUS DWELLING</h1>
+    <p style="text-align: center;margin-bottom: 50px;">These Are The Best Stores For Buying Furniture Online.</p>
+    <div class="container">
+      <div class="row" style="margin-left: -50px;">
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 text-center"><a href="page1"><img src=img/1.png alt="img"></a></div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 text-center"><img src="img/silver.png" alt="silv"></div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 text-center"><a href="page1"><img src="img/2.png" alt="img"></a></div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 text-center"><img src="img/silver.png" alt="silv"></div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 text-center"><img src="img/silver.png" alt="silv"></div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 text-center"><a href="page1"><img src="img/3.png" alt="img"></a></div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 text-center"><img src="img/silver.png" alt="silv"></div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 text-center"><a href="page1"><img src="img/4.png" alt="img"></a></div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 text-center"><a href="page1"><img src="img/2.png" alt="img"></a></div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 text-center"><img src="img/silver.png" alt="silv"></div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 text-center"><a href="page1"><img src="img/1.png" alt="img"></a></div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12 text-center"><img src="img/silver.png" alt="silv"></div>
+      </div>
     </div>
   </div>
 
-  <div class="container">
-    <!-- Example row of columns -->
-    <div class="row">
 
-      @foreach($articles as $article)
-      <div class="col-md-4">
-        <h2>{{$article->title}}</h2>
-        <p><img src='{{$article->img}}'></p>
-        <p>{{$article->description}}</p>
-        <p>{{$article->text}}</p>
-        <p><a class="btn btn-secondary" href="{{route('articleShow', ['id'=>$article->id])}}" role="button">View details &raquo;</a></p>
-      </div>
-      @endforeach
-      <hr>
-    </div> <!-- /container -->
 </main>
+<script>
+  var myIndex = 0;
+  carousel();
+
+  function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    myIndex++;
+    if (myIndex > x.length) {
+      myIndex = 1
+    }
+    x[myIndex - 1].style.display = "block";
+    setTimeout(carousel, 5000);
+  }
+</script>
 
 @endsection

@@ -15,17 +15,19 @@ use App\Http\Controllers\IndexController;
 
 Route::get('/', 'IndexController@index');
 
-Route::get('page1', 'IndexController@page1');
-
 Route::get('article/{id}', 'IndexController@show')->name('articleShow');
-
-Route::get('page/add', 'IndexController@add');
-
-Route::post('page/add', 'IndexController@store')->name('articleStore');
 
 Route::delete('page/delete/{article}', function (\App\Article $article) {
     $article->delete();
-    return redirect('/');
+    return redirect('admin');
 })->name('articleDelete');
 
-Route::get('admin', 'IndexController@admin');
+Route::resource('articles', 'ArticleController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/page1', 'IndexController@page1')->name('page1');
+
+Route::get('/contacts', 'IndexController@contacts')->name('contacts');

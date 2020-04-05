@@ -22,12 +22,6 @@ class IndexController extends Controller
         ]);
     }
 
-    public function page1()
-    {
-        $articles = Article::select(['title', 'description', 'img', 'id', 'text'])->get();
-        return view('page1')->with(['articles' => $articles]);
-    }
-
     protected $ms;
     protected $hw;
     public function _construct()
@@ -38,7 +32,7 @@ class IndexController extends Controller
 
     public function show($id)
     {
-        $article = Article::select(['id', 'title', 'text', 'img'])->where('id', $id)->first();
+        $article = Article::select(['id', 'title', 'description', 'text', 'img'])->where('id', $id)->first();
         return view('article-content')->with([
             'ms' => $this->ms,
             'hw' => $this->hw,
@@ -46,14 +40,8 @@ class IndexController extends Controller
         ]);
     }
 
-    public function add()
-    {
-        return view('add-content')->with(['hw' => $this->hw, 'ms' => $this->ms]);
-    }
-
     public function store(Request $request)
     {
-        echo $request;
         $this->validate($request, [
             'title' => 'required | max:25',
             'description' => 'required',
@@ -68,12 +56,20 @@ class IndexController extends Controller
         return redirect('/');
     }
 
-    public function admin()
+    public function page1()
     {
-        $articless = Article::select(['title', 'description', 'img', 'id', 'text'])->get();
+        $articles = Article::select(['title', 'description', 'img', 'id', 'text'])->get();
         //dump($articles);
-        return view('admin')->with([
-            'articless' => $articless
+        return view('page1')->with([
+            'articles' => $articles
+        ]);
+    }
+
+    public function contacts()
+    {
+        $articles = Article::select(['title', 'description', 'img', 'id', 'text'])->get();
+        return view('contacts')->with([
+            'articles'=>$articles
         ]);
     }
 }
